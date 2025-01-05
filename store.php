@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-    $dob = $_POST['dob'];
+    $dateOfBirth = $_POST['dateOfBirth'];
 
     $sql = "INSERT INTO users (
         role,
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         '$phone',
         '$gender',
         '$address',
-        '$dob',
+        '$dateOfBirth',
         NOW()
     )";
 

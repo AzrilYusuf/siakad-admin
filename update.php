@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 $gender = $_POST['gender'];
 $address = $_POST['address'];
-$dob = $_POST['dob'];
+$dateOfBirth = $_POST['dateOfBirth'];
 
 $sql = "UPDATE users SET
         role='$role',
@@ -16,7 +16,7 @@ $sql = "UPDATE users SET
         phone='$phone',
         gender='$gender',
         address='$address',
-        dob='$dob',
+        dob='$dateOfBirth',
         updated_at=NOW()
         WHERE id=$id";
 if ($conn->query($sql)) {

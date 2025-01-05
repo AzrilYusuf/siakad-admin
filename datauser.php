@@ -489,8 +489,8 @@ include('db.php');
                                             <input type="email" class="form-control" id="editEmail" name="email" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="editPhoneNumber" class="form-label">Nomor Telepon : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="editPhoneNumber" name="phoneNumber" required>
+                                            <label for="editPhone" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editPhone" name="phone" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="editGender">Jenis Kelamin:</label>
@@ -549,8 +549,8 @@ include('db.php');
                                             <input type="password" class="form-control" id="addPassword" name="password" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="addPhoneNumber" class="form-label">Nomor Telepon : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="addPhoneNumber" name="phone_number" required>
+                                            <label for="addPhone" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="gender">Jenis Kelamin:</label>
@@ -663,7 +663,7 @@ include('db.php');
                 $('#editRole').val(role);
                 $('#editName').val(name);
                 $('#editEmail').val(email);
-                $('#editPhoneNumber').val(phoneNumber);
+                $('#editPhone').val(phoneNumber);
                 $('#editGender').val(gender);
                 $('#editAddress').val(address);
                 $('#editDateOfBirth').val(dateOfBirth);
