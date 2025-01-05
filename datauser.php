@@ -396,14 +396,13 @@ include('db.php');
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                    <!-- DataTales Example -->
+                    <!-- Users Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Users Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <!-- <a href="create.php" class="btn btn-primary mb-3">Add New User</a> -->
                                 <button class='btn btn-primary btn-md mb-3 addBtn'>Add New User</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -422,7 +421,7 @@ include('db.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $result = $conn->query("SELECT * FROM users WHERE deleted_at IS NULL");
+                                        $result = $conn->query("SELECT id, role, name, email, phone, gender, address, dob FROM users WHERE deleted_at IS NULL");
                                         $no = 1; // Inisialisasi nomor urut
                                         while ($row = $result->fetch_assoc()) {
 
@@ -461,8 +460,139 @@ include('db.php');
                         </div>
                     </div>
 
+                    <!-- Teachers Table -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Teachers Table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <button class='btn btn-primary btn-md mb-3 addBtn'>Add New Teacher</button>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th> <!-- Kolom Nomor -->
+                                            <th>ID Guru</th>
+                                            <th>Nama</th>
+                                            <th>Spesialisasi</th>
+                                            <th>e-Mail</th>
+                                            <th>Telp</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Alamat</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $result = $conn->query("SELECT teachers.id, teachers.teacher_id, teachers.specialization, users.name, users.email, users.address, users.phone
+                                                                FROM teachers 
+                                                                INNER JOIN users 
+                                                                ON users.id = teachers.id 
+                                                                WHERE teachers.deleted_at IS NULL;");
+                                        $no = 1; // Inisialisasi nomor urut
+                                        while ($row = $result->fetch_assoc()) {
 
-                    <!-- Modal for Edit -->
+                                            echo "<tr>
+                                                        <td>{$no}</td> <!--Menampilkan nomor urut-->
+                                                        <td>{$row['id']}</td>
+                                                        <td>{$row['teacher_id']}</td>
+                                                        <td>{$row['name']}</td>
+                                                        <td>{$row['specialization']}</td>
+                                                        <td>{$row['email']}</td>
+                                                        <td>{$row['phone']}</td>
+                                                        <td>{$row['address']}</td>
+                                                        <td>
+                                                            <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
+                                                            <button class='btn btn-warning btn-sm editBtn' 
+                                                                data-id='{$row['id']}' 
+                                                                data-teacher-id='{$row['teacher_id']}' 
+                                                                data-name='{$row['name']}' 
+                                                                data-specialization='{$row['specialization']}' 
+                                                                data-email='{$row['email']}' 
+                                                                data-phone='{$row['phone']}'
+                                                                data-address='{$row['address']}' 
+                                                                >Edit</button>
+
+                                                            <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                        </td>
+                                                    </tr>";
+                                            $no++; // Increment nomor urut
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Students Table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <button class='btn btn-primary btn-md mb-3 addBtn'>Add New Student</button>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th> <!-- Kolom Nomor -->
+                                            <th>NISN / ID Siswa</th>
+                                            <th>Nama</th>
+                                            <th>Kelas</th>
+                                            <th>e-Mail</th>
+                                            <th>Telp</th>
+                                            <th>Alamat</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $result = $conn->query("SELECT students.id, students.student_id, classes.name as class_name, users.name, users.email, users.address, users.phone
+                                                                FROM students
+                                                                inner join classes
+                                                                on students.class_id = classes.id
+                                                                INNER JOIN users
+                                                                ON students.id = users.id
+                                                                WHERE students.deleted_at IS NULL;");
+                                        $no = 1; // Inisialisasi nomor urut
+                                        while ($row = $result->fetch_assoc()) {
+
+                                            echo "<tr>
+                                                        <td>{$no}</td> <!--Menampilkan nomor urut-->
+                                                        <td>{$row['id']}</td>
+                                                        <td>{$row['student_id']}</td>
+                                                        <td>{$row['name']}</td>
+                                                        <td>{$row['class_name']}</td>
+                                                        <td>{$row['email']}</td>
+                                                        <td>{$row['phone']}</td>
+                                                        <td>{$row['address']}</td>
+                                                        <td>
+                                                            <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
+                                                            <button class='btn btn-warning btn-sm editBtn' 
+                                                                data-id='{$row['id']}' 
+                                                                data-student-id='{$row['student_id']}' 
+                                                                data-name='{$row['name']}' 
+                                                                data-class-name='{$row['class_name']}' 
+                                                                data-email='{$row['email']}' 
+                                                                data-phone='{$row['phone']}' 
+                                                                data-address='{$row['address']}'
+                                                                >Edit</button>
+
+                                                            <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                        </td>
+                                                    </tr>";
+                                            $no++; // Increment nomor urut
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal for Edit User -->
                     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -502,7 +632,7 @@ include('db.php');
                                         </div>
                                         <div class="mb-3">
                                             <label for="editAddress" class="form-label">Alamat : </label>
-                                            <input type="text"class="form-control" id="editAddress" name="address" required>
+                                            <input type="text" class="form-control" id="editAddress" name="address" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="editDateOfBirth" class="form-label">Tanggal Lahir : </label>
@@ -518,7 +648,7 @@ include('db.php');
                         </div>
                     </div>
 
-                    <!-- Modal for ADD -->
+                    <!-- Modal for Add User -->
                     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -562,7 +692,127 @@ include('db.php');
                                         </div>
                                         <div class="mb-3">
                                             <label for="addAddress" class="form-label">Alamat : </label>
-                                            <input type="text"class="form-control" id="addAddress" name="address" required>
+                                            <input type="text" class="form-control" id="addAddress" name="address" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addDateOfBirth" class="form-label">Tanggal Lahir : </label>
+                                            <input type="date" class="form-control" id="addDateOfBirth" name="dateOfBirth" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Add Teacher -->
+                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="addForm" method="POST" action="store.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addModalLabel">Add Guru</h5>
+                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="addId">
+                                        <div class="mb-3">
+                                            <label for="editRole">Role : </label>
+                                            <select name="role" id="editRole">
+                                                <option value="Admin">Admin</option>
+                                                <option value="Teacher">Teacher</option>
+                                                <option value="Student">Student</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addName" class="form-label">Name : </label>
+                                            <input type="text" class="form-control" id="addName" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addEmail" class="form-label">Email : </label>
+                                            <input type="email" class="form-control" id="addEmail" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addPassword" class="form-label">Password : </label>
+                                            <input type="password" class="form-control" id="addPassword" name="password" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addPhone" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="gender">Jenis Kelamin:</label>
+                                            <select name="gender" id="gender">
+                                                <option value="Male">Laki-laki</option>
+                                                <option value="Female">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addAddress" class="form-label">Alamat : </label>
+                                            <input type="text" class="form-control" id="addAddress" name="address" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addDateOfBirth" class="form-label">Tanggal Lahir : </label>
+                                            <input type="date" class="form-control" id="addDateOfBirth" name="dateOfBirth" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Add Student -->
+                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="addForm" method="POST" action="store.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addModalLabel">Add User</h5>
+                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="addId">
+                                        <div class="mb-3">
+                                            <label for="editRole">Role : </label>
+                                            <select name="role" id="editRole">
+                                                <option value="Admin">Admin</option>
+                                                <option value="Teacher">Teacher</option>
+                                                <option value="Student">Student</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addName" class="form-label">Name : </label>
+                                            <input type="text" class="form-control" id="addName" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addEmail" class="form-label">Email : </label>
+                                            <input type="email" class="form-control" id="addEmail" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addPassword" class="form-label">Password : </label>
+                                            <input type="password" class="form-control" id="addPassword" name="password" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addPhone" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="gender">Jenis Kelamin:</label>
+                                            <select name="gender" id="gender">
+                                                <option value="Male">Laki-laki</option>
+                                                <option value="Female">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addAddress" class="form-label">Alamat : </label>
+                                            <input type="text" class="form-control" id="addAddress" name="address" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="addDateOfBirth" class="form-label">Tanggal Lahir : </label>
