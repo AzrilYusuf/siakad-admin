@@ -6,7 +6,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -33,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Verify the password
         if ($password === $user['password']) {
             // Password matches
-            if ($user['role'] == 'admin') {
+            if ($user['role'] == 'Admin') {
                 // Admin login accepted
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
