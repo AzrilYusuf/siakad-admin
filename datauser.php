@@ -450,7 +450,7 @@ include('./db/db.php');
                                                                 data-dob='{$row['dob']}' 
                                                                 >Edit</button>
 
-                                                            <a href='./services/delete/deleteUser.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='./services/delete/user.delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
@@ -511,7 +511,7 @@ include('./db/db.php');
                                                                 data-specialization='{$row['specialization']}'
                                                                 >Edit</button>
 
-                                                            <a href='./services/delete/deleteTeacher.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='./services/delete/teacher.delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
@@ -574,7 +574,7 @@ include('./db/db.php');
                                                                 data-class-id='{$row['class_id']}'
                                                                 >Edit</button>
 
-                                                            <a href='./services/delete/deleteStudent.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='./services/delete/student.delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
@@ -591,7 +591,7 @@ include('./db/db.php');
                     <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/updateUser.php">
+                                <form id="editForm" method="POST" action="./services/update/user.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit User</h5>
                                         <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
@@ -647,7 +647,7 @@ include('./db/db.php');
                     <div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/updateTeacher.php">
+                                <form id="editForm" method="POST" action="./services/update/teacher.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit Teacher</h5>
                                         <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
@@ -676,7 +676,7 @@ include('./db/db.php');
                     <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/updateStudent.php">
+                                <form id="editForm" method="POST" action="./services/update/student.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
                                         <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>
@@ -705,7 +705,7 @@ include('./db/db.php');
                     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="./services/create/addUser.php">
+                                <form id="addForm" method="POST" action="./services/create/user.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add User</h5>
                                         <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
@@ -765,7 +765,7 @@ include('./db/db.php');
                     <div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="./services/create/addTeacher.php">
+                                <form id="addForm" method="POST" action="./services/create/teacher.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Guru</h5>
                                         <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
@@ -798,7 +798,7 @@ include('./db/db.php');
                     <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="./services/create/addStudent.php">
+                                <form id="addForm" method="POST" action="./services/create/student.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Student</h5>
                                         <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>

@@ -26,9 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // Debugging: output the user data
-        var_dump($user); // Output user data to check what is being retrieved
-        
         // Verify the password
         if ($password === $user['password']) {
             // Password matches
@@ -41,16 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 // Login rejected for non-admin
                 echo "Login ditolak! Anda tidak memiliki izin.";
-                header('Location: ../../login.html');
-                exit;
             }
         } else {
             // Password does not match
-            echo "Login gagal! Password salah.";
+            echo "Login gagal! Password salah. Pastikan Anda memasukkan password yang benar.";
         }
     } else {
-	// Role not valid
-        echo "Login gagal! Email tidak ditemukan.";
+        // Role not valid
+        echo "Login gagal! Email tidak ditemukan. Pastikan Anda memasukkan email yang benar.";
     }
 
     $stmt->close();
