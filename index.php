@@ -1,6 +1,6 @@
 <?php
-include('auth.php'); // Cek login
-include('db.php');
+include('./services/auth/auth.php'); // Cek login
+include('./db/db.php');
 ?>
 
 <!DOCTYPE html>

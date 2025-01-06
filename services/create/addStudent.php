@@ -1,4 +1,4 @@
-<?php include('db.php');
+<?php include('../../db/db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_POST['user_id'];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     )";
 
     if ($conn->query($sql) === TRUE) {
-        header('Location: dataUser.php');
+        header('Location: ../../dataUser.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

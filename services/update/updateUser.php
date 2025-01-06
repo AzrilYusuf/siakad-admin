@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../../db/db.php');
 $id = $_POST['id'];
 $role = $_POST['role'];
 $name = $_POST['name'];
@@ -20,7 +20,7 @@ $sql = "UPDATE users SET
         updated_at=NOW()
         WHERE id=$id";
 if ($conn->query($sql)) {
-    header('Location: dataUser.php');
+    header('Location: ../../dataUser.php');
 } else {
     echo "Error: " . $conn->error;
 }

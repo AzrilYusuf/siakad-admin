@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../../db/db.php');
 $id = $_POST['id'];
 $teacherId = $_POST['teacher_id'];
 $specialization = $_POST['specialization'];
@@ -10,7 +10,7 @@ $sql = "UPDATE teachers SET
         updated_at=NOW()
         WHERE id=$id";
 if ($conn->query($sql)) {
-    header('Location: dataUser.php');
+    header('Location: ../../dataUser.php');
 } else {
     echo "Error: " . $conn->error;
 }

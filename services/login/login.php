@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include('../../db/db.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Admin login accepted
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
-                header('Location: index.php');
+                header('Location: ../../index.php');
                 exit;
             } else {
                 // Login rejected for non-admin
                 echo "Login ditolak! Anda tidak memiliki izin.";
-                header('Location: login.html');
+                header('Location: ../../login.html');
                 exit;
             }
         } else {
