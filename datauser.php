@@ -39,7 +39,7 @@ include('db.php');
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -51,7 +51,7 @@ include('db.php');
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -74,7 +74,7 @@ include('db.php');
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User Data:</h6>
-                        <a class="collapse-item" href="datauser.php">Data User 1</a>
+                        <a class="collapse-item" href="dataUser.php">Data User 1</a>
                         <a class="collapse-item" href="datauser2.php">Data User 2</a>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ include('db.php');
                     <span>Charts</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="datauser.php">
+                <a class="nav-link" href="dataUser.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data User</span></a>
             </li>
@@ -384,7 +384,6 @@ include('db.php');
                     </ul>
 
                 </nav>
-                <nav />
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -403,7 +402,7 @@ include('db.php');
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <button class='btn btn-primary btn-md mb-3 addBtn'>Add New User</button>
+                                <button class='btn btn-primary btn-md mb-3 addUserBtn'>Add New User</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -467,17 +466,17 @@ include('db.php');
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <button class='btn btn-primary btn-md mb-3 addBtn'>Add New Teacher</button>
+                                <button class='btn btn-primary btn-md mb-3 addTeacherBtn'>Add New Teacher</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th> <!-- Kolom Nomor -->
+                                            <th>User ID</th>
                                             <th>ID Guru</th>
                                             <th>Nama</th>
                                             <th>Spesialisasi</th>
                                             <th>e-Mail</th>
                                             <th>Telp</th>
-                                            <th>Jenis Kelamin</th>
                                             <th>Alamat</th>
                                             <th>Action</th>
                                         </tr>
@@ -532,11 +531,12 @@ include('db.php');
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <button class='btn btn-primary btn-md mb-3 addBtn'>Add New Student</button>
+                                <button class='btn btn-primary btn-md mb-3 addStudentBtn'>Add New Student</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th> <!-- Kolom Nomor -->
+                                            <th>User ID</th>
                                             <th>NISN / ID Siswa</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
@@ -649,19 +649,19 @@ include('db.php');
                     </div>
 
                     <!-- Modal for Add User -->
-                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="store.php">
+                                <form id="addForm" method="POST" action="addUser.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add User</h5>
-                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
                                         <div class="mb-3">
-                                            <label for="editRole">Role : </label>
-                                            <select name="role" id="editRole">
+                                            <label for="addRole">Role : </label>
+                                            <select name="role" id="addRole">
                                                 <option value="Admin">Admin</option>
                                                 <option value="Teacher">Teacher</option>
                                                 <option value="Student">Student</option>
@@ -700,7 +700,7 @@ include('db.php');
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="button" class="btn btn-secondary closeUserModalBtn">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
@@ -709,58 +709,31 @@ include('db.php');
                     </div>
 
                     <!-- Modal for Add Teacher -->
-                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addTeacherModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="store.php">
+                                <form id="addForm" method="POST" action="addTeacher.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Guru</h5>
-                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
                                         <div class="mb-3">
-                                            <label for="editRole">Role : </label>
-                                            <select name="role" id="editRole">
-                                                <option value="Admin">Admin</option>
-                                                <option value="Teacher">Teacher</option>
-                                                <option value="Student">Student</option>
-                                            </select>
+                                            <label for="addUserId" class="form-label">User ID : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addUserId" name="user_id" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="addName" class="form-label">Name : </label>
-                                            <input type="text" class="form-control" id="addName" name="name" required>
+                                            <label for="addTeacherId" class="form-label">ID Guru : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addTeacherId" name="teacher_id" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="addEmail" class="form-label">Email : </label>
-                                            <input type="email" class="form-control" id="addEmail" name="email" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addPassword" class="form-label">Password : </label>
-                                            <input type="password" class="form-control" id="addPassword" name="password" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addPhone" class="form-label">Nomor Telepon : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="gender">Jenis Kelamin:</label>
-                                            <select name="gender" id="gender">
-                                                <option value="Male">Laki-laki</option>
-                                                <option value="Female">Perempuan</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addAddress" class="form-label">Alamat : </label>
-                                            <input type="text" class="form-control" id="addAddress" name="address" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addDateOfBirth" class="form-label">Tanggal Lahir : </label>
-                                            <input type="date" class="form-control" id="addDateOfBirth" name="dateOfBirth" required>
+                                            <label for="addSpecialization" class="form-label">Spesialisasi : </label>
+                                            <input type="text" class="form-control" id="addSpecialization" name="specialization" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="button" class="btn btn-secondary closeTeacherModalBtn">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
@@ -769,58 +742,31 @@ include('db.php');
                     </div>
 
                     <!-- Modal for Add Student -->
-                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="addForm" method="POST" action="store.php">
+                                <form id="addForm" method="POST" action="addStudent.php">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addModalLabel">Add User</h5>
-                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                        <h5 class="modal-title" id="addModalLabel">Add Student</h5>
+                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
                                         <div class="mb-3">
-                                            <label for="editRole">Role : </label>
-                                            <select name="role" id="editRole">
-                                                <option value="Admin">Admin</option>
-                                                <option value="Teacher">Teacher</option>
-                                                <option value="Student">Student</option>
-                                            </select>
+                                            <label for="addUserId" class="form-label">User ID : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addUserId" name="user_id" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="addName" class="form-label">Name : </label>
-                                            <input type="text" class="form-control" id="addName" name="name" required>
+                                            <label for="addStudentId" class="form-label">ID Siswa / NISN : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addStudentId" name="student_id" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="addEmail" class="form-label">Email : </label>
-                                            <input type="email" class="form-control" id="addEmail" name="email" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addPassword" class="form-label">Password : </label>
-                                            <input type="password" class="form-control" id="addPassword" name="password" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addPhone" class="form-label">Nomor Telepon : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="gender">Jenis Kelamin:</label>
-                                            <select name="gender" id="gender">
-                                                <option value="Male">Laki-laki</option>
-                                                <option value="Female">Perempuan</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addAddress" class="form-label">Alamat : </label>
-                                            <input type="text" class="form-control" id="addAddress" name="address" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="addDateOfBirth" class="form-label">Tanggal Lahir : </label>
-                                            <input type="date" class="form-control" id="addDateOfBirth" name="dateOfBirth" required>
+                                            <label for="addClassId" class="form-label">ID Kelas : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="addClassId" name="class_id" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="button" class="btn btn-secondary closeStudentModalBtn">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
@@ -929,13 +875,29 @@ include('db.php');
             });
 
             // Open modal for adding new user
-            $('.addBtn').on('click', function() {
-                $('#addModal').modal('show');
+            $('.addUserBtn').on('click', function() {
+                $('#addUserModal').modal('show');
+            });
+
+            $('.addTeacherBtn').on('click', function() {
+                $('#addTeacherModal').modal('show');
+            });
+
+            $('.addStudentBtn').on('click', function() {
+                $('#addStudentModal').modal('show');
             });
 
             // Close add modal
-            $('.closeModalBtn').on('click', function() {
-                $('#addModal').modal('hide');
+            $('.closeUserModalBtn').on('click', function() {
+                $('#addUserModal').modal('hide');
+            });
+
+            $('.closeTeacherModalBtn').on('click', function() {
+                $('#addTeacherModal').modal('hide');
+            });
+
+            $('.closeStudentModalBtn').on('click', function() {
+                $('#addStudentModal').modal('hide');
             });
         });
     </script>
