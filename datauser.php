@@ -424,6 +424,9 @@ include('db.php');
                                         $no = 1; // Inisialisasi nomor urut
                                         while ($row = $result->fetch_assoc()) {
 
+                                            $convertedGender = $row['gender'] == 'Male' ? 'Laki-laki' : 'Perempuan'; // Convert gender to readable format
+                                            $convertedDob = date('d-m-Y', strtotime($row['dob'])); // Convert date of birth to readable format
+
                                             echo "<tr>
                                                         <td>{$no}</td> <!--Menampilkan nomor urut-->
                                                         <td>{$row['id']}</td>
@@ -431,12 +434,12 @@ include('db.php');
                                                         <td>{$row['name']}</td>
                                                         <td>{$row['email']}</td>
                                                         <td>{$row['phone']}</td>
-                                                        <td>{$row['gender']}</td>
+                                                        <td>{$convertedGender}</td>
                                                         <td>{$row['address']}</td>
-                                                        <td>{$row['dob']}</td>
+                                                        <td>{$convertedDob}</td>
                                                         <td>
                                                             <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
-                                                            <button class='btn btn-warning btn-sm editBtn' 
+                                                            <button class='btn btn-warning btn-sm editUserBtn' 
                                                                 data-id='{$row['id']}' 
                                                                 data-role='{$row['role']}' 
                                                                 data-name='{$row['name']}' 
@@ -502,14 +505,10 @@ include('db.php');
                                                         <td>{$row['address']}</td>
                                                         <td>
                                                             <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
-                                                            <button class='btn btn-warning btn-sm editBtn' 
-                                                                data-id='{$row['id']}' 
+                                                            <button class='btn btn-warning btn-sm editTeacherBtn'
+                                                                data-id='{$row['id']}'
                                                                 data-teacher-id='{$row['teacher_id']}' 
-                                                                data-name='{$row['name']}' 
-                                                                data-specialization='{$row['specialization']}' 
-                                                                data-email='{$row['email']}' 
-                                                                data-phone='{$row['phone']}'
-                                                                data-address='{$row['address']}' 
+                                                                data-specialization='{$row['specialization']}'
                                                                 >Edit</button>
 
                                                             <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
@@ -548,7 +547,7 @@ include('db.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $result = $conn->query("SELECT students.id, students.student_id, classes.name as class_name, users.name, users.email, users.address, users.phone
+                                        $result = $conn->query("SELECT students.id, students.student_id, students.class_id, classes.name as class_name, users.name, users.email, users.address, users.phone
                                                                 FROM students
                                                                 inner join classes
                                                                 on students.class_id = classes.id
@@ -569,14 +568,10 @@ include('db.php');
                                                         <td>{$row['address']}</td>
                                                         <td>
                                                             <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
-                                                            <button class='btn btn-warning btn-sm editBtn' 
-                                                                data-id='{$row['id']}' 
-                                                                data-student-id='{$row['student_id']}' 
-                                                                data-name='{$row['name']}' 
-                                                                data-class-name='{$row['class_name']}' 
-                                                                data-email='{$row['email']}' 
-                                                                data-phone='{$row['phone']}' 
-                                                                data-address='{$row['address']}'
+                                                            <button class='btn btn-warning btn-sm editStudentBtn'
+                                                                data-id='{$row['id']}'
+                                                                data-student-id='{$row['student_id']}'
+                                                                data-class-id='{$row['class_id']}'
                                                                 >Edit</button>
 
                                                             <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
@@ -593,16 +588,16 @@ include('db.php');
 
 
                     <!-- Modal for Edit User -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form id="editForm" method="POST" action="update.php">
+                                <form id="editForm" method="POST" action="updateUser.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit User</h5>
-                                        <button type="button" class="btn-close closeModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="hidden" name="id" id="editId">
+                                        <input type="hidden" name="id" id="userId">
                                         <div class="mb-3">
                                             <label for="editRole">Role : </label>
                                             <select name="role" id="editRole">
@@ -640,7 +635,65 @@ include('db.php');
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeModalBtn">Close</button>
+                                        <button type="button" class="btn btn-secondary closeUserModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Edit Teacher -->
+                    <div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="updateTeacher.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit Teacher</h5>
+                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="teacherId">
+                                        <div class="mb-3">
+                                            <label for="editTeacherId" class="form-label">ID Guru : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editTeacherId" name="teacher_id" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editSpecialization" class="form-label">Spesialisasi : </label>
+                                            <input type="text" class="form-control" id="editSpecialization" name="specialization" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeTeacherModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Edit Student -->
+                    <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="updateStudent.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
+                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="studentId">
+                                        <div class="mb-3">
+                                            <label for="editStudentId" class="form-label">ID Siswa / NISN : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editStudentId" name="student_id" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editClassId" class="form-label">ID Kelas : </label>
+                                            <input type="text" class="form-control" id="editClassId" name="class_id" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeStudentModalBtn">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
@@ -844,8 +897,8 @@ include('db.php');
         $(document).ready(function() {
             $('#userTable').DataTable();
 
-            // Populate modal with user data
-            $('.editBtn').on('click', function() {
+            // Populate modal with user data for user
+            $('.editUserBtn').on('click', function() {
                 const id = $(this).data('id');
                 const role = $(this).data('role');
                 const name = $(this).data('name');
@@ -856,7 +909,7 @@ include('db.php');
                 const dateOfBirth = $(this).data('dob');
 
                 // Populate the modal fields with existing user data
-                $('#editId').val(id);
+                $('#userId').val(id);
                 $('#editRole').val(role);
                 $('#editName').val(name);
                 $('#editEmail').val(email);
@@ -866,12 +919,53 @@ include('db.php');
                 $('#editDateOfBirth').val(dateOfBirth);
 
                 // Show the modal
-                $('#editModal').modal('show');
+                $('#editUserModal').modal('show');
             });
 
             // Close modal
-            $('.closeModalBtn').on('click', function() {
-                $('#editModal').modal('hide');
+            $('.closeUserModalBtn').on('click', function() {
+                $('#editUserModal').modal('hide');
+            });
+
+            // Populate modal with user data for teacher
+            $('.editTeacherBtn').on('click', function() {
+                const id = $(this).data('id');
+                const teacherId = $(this).data('teacher-id');
+                const specialization = $(this).data('specialization');
+
+                console.log("id: " + id);
+                // Populate the modal fields with existing user data
+                $('#teacherId').val(id);
+                $('#editTeacherId').val(teacherId);
+                $('#editSpecialization').val(specialization);
+
+                // Show the modal
+                $('#editTeacherModal').modal('show');
+            });
+
+            // Close modal
+            $('.closeTeacherModalBtn').on('click', function() {
+                $('#editTeacherModal').modal('hide');
+            });
+
+            // Populate modal with user data for student
+            $('.editStudentBtn').on('click', function() {
+                const id = $(this).data('id');
+                const studentId = $(this).data('student-id');
+                const classId = $(this).data('class-id');
+
+                // Populate the modal fields with existing user data
+                $('#studentId').val(id);
+                $('#editStudentId').val(studentId);
+                $('#editClassId').val(classId);
+
+                // Show the modal
+                $('#editStudentModal').modal('show');
+            });
+
+            // Close modal
+            $('.closeStudentModalBtn').on('click', function() {
+                $('#editStudentModal').modal('hide');
             });
 
             // Open modal for adding new user
