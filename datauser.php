@@ -450,7 +450,7 @@ include('db.php');
                                                                 data-dob='{$row['dob']}' 
                                                                 >Edit</button>
 
-                                                            <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='deleteUser.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
@@ -511,7 +511,7 @@ include('db.php');
                                                                 data-specialization='{$row['specialization']}'
                                                                 >Edit</button>
 
-                                                            <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='deleteTeacher.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
