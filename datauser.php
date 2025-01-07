@@ -594,13 +594,13 @@ include('./db/db.php');
                                 <form id="editForm" method="POST" action="./services/update/user.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit User</h5>
-                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="userId">
                                         <div class="mb-3">
-                                            <label for="editRole">Role : </label>
-                                            <select name="role" id="editRole">
+                                            <label for="editRole" class="form-label">Role : </label>
+                                            <select name="role" class="form-control" id="editRole">
                                                 <option value="Admin">Admin</option>
                                                 <option value="Teacher">Teacher</option>
                                                 <option value="Student">Student</option>
@@ -619,8 +619,8 @@ include('./db/db.php');
                                             <input type="text" inputmode="numeric" class="form-control" id="editPhone" name="phone" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="editGender">Jenis Kelamin:</label>
-                                            <select name="gender" id="editGender">
+                                            <label for="editGender" class="form-label">Jenis Kelamin:</label>
+                                            <select name="gender" class="form-control" id="editGender">
                                                 <option value="Male">Laki-laki</option>
                                                 <option value="Female">Perempuan</option>
                                             </select>
@@ -650,7 +650,7 @@ include('./db/db.php');
                                 <form id="editForm" method="POST" action="./services/update/teacher.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit Teacher</h5>
-                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="teacherId">
@@ -679,7 +679,7 @@ include('./db/db.php');
                                 <form id="editForm" method="POST" action="./services/update/student.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
-                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="studentId">
@@ -708,13 +708,13 @@ include('./db/db.php');
                                 <form id="addForm" method="POST" action="./services/create/user.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add User</h5>
-                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
                                         <div class="mb-3">
-                                            <label for="addRole">Role : </label>
-                                            <select name="role" id="addRole">
+                                            <label for="addRole" class="form-label">Role : </label>
+                                            <select name="role" class="form-control" id="addRole">
                                                 <option value="Admin">Admin</option>
                                                 <option value="Teacher">Teacher</option>
                                                 <option value="Student">Student</option>
@@ -737,8 +737,8 @@ include('./db/db.php');
                                             <input type="text" inputmode="numeric" class="form-control" id="addPhone" name="phone" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="gender">Jenis Kelamin:</label>
-                                            <select name="gender" id="gender">
+                                            <label for="gender" class="form-label">Jenis Kelamin:</label>
+                                            <select name="gender" class="form-control" id="gender">
                                                 <option value="Male">Laki-laki</option>
                                                 <option value="Female">Perempuan</option>
                                             </select>
@@ -768,7 +768,7 @@ include('./db/db.php');
                                 <form id="addForm" method="POST" action="./services/create/teacher.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Guru</h5>
-                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
@@ -801,7 +801,7 @@ include('./db/db.php');
                                 <form id="addForm" method="POST" action="./services/create/student.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Student</h5>
-                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close"></button>
+                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
