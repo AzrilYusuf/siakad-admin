@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     )";
 
     if ($conn->query($sql) === TRUE) {
-        header('Location: ../../dataUser.php');
+        header('Location: ../../userData.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

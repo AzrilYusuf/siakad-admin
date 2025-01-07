@@ -69,13 +69,13 @@ include('./db/db.php');
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>User Management</span>
+                    <span>Data Management</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">User Data:</h6>
-                        <a class="collapse-item" href="dataUser.php">Data User 1</a>
-                        <a class="collapse-item" href="datauser2.php">Data User 2</a>
+                        <h6 class="collapse-header">Data:</h6>
+                        <a class="collapse-item" href="userData.php">Data User</a>
+                        <a class="collapse-item" href="classData.php">Data Kelas</a>
                     </div>
                 </div>
             </li>
@@ -150,17 +150,17 @@ include('./db/db.php');
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="dataUser.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Data User</span></a>
-            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="userData.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Data User</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="classData.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Data Kelas</span></a>
             </li>
 
             <!-- Divider -->

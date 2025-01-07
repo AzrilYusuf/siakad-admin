@@ -10,7 +10,7 @@ $sql = "UPDATE teachers SET
         updated_at=NOW()
         WHERE id=$id";
 if ($conn->query($sql)) {
-    header('Location: ../../dataUser.php');
+    header('Location: ../../userData.php');
 } else {
     echo "Error: " . $conn->error;
 }

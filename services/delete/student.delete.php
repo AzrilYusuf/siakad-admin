@@ -5,7 +5,7 @@ $id = $_GET['id'];
 
 $sql = "UPDATE students SET deleted_at=NOW() WHERE id=$id";
 if ($conn->query($sql)) {
-    header('Location: ../../dataUser.php');
+    header('Location: ../../userData.php');
 } else {
     echo "Error: " . $conn->error;
 }
