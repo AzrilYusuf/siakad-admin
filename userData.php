@@ -395,6 +395,7 @@ include('./db/db.php');
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
 
+                    <!-- DISPLAY DATA    -->
                     <!-- Users Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -586,121 +587,7 @@ include('./db/db.php');
                         </div>
                     </div>
 
-
-                    <!-- Modal for Edit User -->
-                    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/user.update.php">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit User</h5>
-                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="id" id="userId">
-                                        <div class="mb-3">
-                                            <label for="editRole" class="form-label">Role : </label>
-                                            <select name="role" class="form-control" id="editRole">
-                                                <option value="Admin">Admin</option>
-                                                <option value="Teacher">Teacher</option>
-                                                <option value="Student">Student</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editName" class="form-label">Name : </label>
-                                            <input type="text" class="form-control" id="editName" name="name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editEmail" class="form-label">Email : </label>
-                                            <input type="email" class="form-control" id="editEmail" name="email" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editPhone" class="form-label">Nomor Telepon : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="editPhone" name="phone" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editGender" class="form-label">Jenis Kelamin:</label>
-                                            <select name="gender" class="form-control" id="editGender">
-                                                <option value="Male">Laki-laki</option>
-                                                <option value="Female">Perempuan</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editAddress" class="form-label">Alamat : </label>
-                                            <input type="text" class="form-control" id="editAddress" name="address" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editDateOfBirth" class="form-label">Tanggal Lahir : </label>
-                                            <input type="date" class="form-control" id="editDateOfBirth" name="dateOfBirth" required>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeUserModalBtn">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal for Edit Teacher -->
-                    <div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/teacher.update.php">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit Teacher</h5>
-                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="id" id="teacherId">
-                                        <div class="mb-3">
-                                            <label for="editTeacherId" class="form-label">ID Guru : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="editTeacherId" name="teacher_id" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editSpecialization" class="form-label">Spesialisasi : </label>
-                                            <input type="text" class="form-control" id="editSpecialization" name="specialization" required>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeTeacherModalBtn">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal for Edit Student -->
-                    <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form id="editForm" method="POST" action="./services/update/student.update.php">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
-                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="hidden" name="id" id="studentId">
-                                        <div class="mb-3">
-                                            <label for="editStudentId" class="form-label">ID Siswa / NISN : </label>
-                                            <input type="text" inputmode="numeric" class="form-control" id="editStudentId" name="student_id" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editClassId" class="form-label">ID Kelas : </label>
-                                            <input type="text" class="form-control" id="editClassId" name="class_id" required>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeStudentModalBtn">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- ADD MODALS -->
                     <!-- Modal for Add User -->
                     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -827,7 +714,120 @@ include('./db/db.php');
                         </div>
                     </div>
 
+                    <!-- EDIT MODALS -->
+                    <!-- Modal for Edit User -->
+                    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="./services/update/user.update.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                                        <button type="button" class="btn-close closeUserModalBtn" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="userId">
+                                        <div class="mb-3">
+                                            <label for="editRole" class="form-label">Role : </label>
+                                            <select name="role" class="form-control" id="editRole">
+                                                <option value="Admin">Admin</option>
+                                                <option value="Teacher">Teacher</option>
+                                                <option value="Student">Student</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editName" class="form-label">Name : </label>
+                                            <input type="text" class="form-control" id="editName" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editEmail" class="form-label">Email : </label>
+                                            <input type="email" class="form-control" id="editEmail" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editPhone" class="form-label">Nomor Telepon : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editPhone" name="phone" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editGender" class="form-label">Jenis Kelamin:</label>
+                                            <select name="gender" class="form-control" id="editGender">
+                                                <option value="Male">Laki-laki</option>
+                                                <option value="Female">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editAddress" class="form-label">Alamat : </label>
+                                            <input type="text" class="form-control" id="editAddress" name="address" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editDateOfBirth" class="form-label">Tanggal Lahir : </label>
+                                            <input type="date" class="form-control" id="editDateOfBirth" name="dateOfBirth" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeUserModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Modal for Edit Teacher -->
+                    <div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="./services/update/teacher.update.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit Teacher</h5>
+                                        <button type="button" class="btn-close closeTeacherModalBtn" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="teacherId">
+                                        <div class="mb-3">
+                                            <label for="editTeacherId" class="form-label">ID Guru : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editTeacherId" name="teacher_id" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editSpecialization" class="form-label">Spesialisasi : </label>
+                                            <input type="text" class="form-control" id="editSpecialization" name="specialization" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeTeacherModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Edit Student -->
+                    <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="./services/update/student.update.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
+                                        <button type="button" class="btn-close closeStudentModalBtn" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="studentId">
+                                        <div class="mb-3">
+                                            <label for="editStudentId" class="form-label">ID Siswa / NISN : </label>
+                                            <input type="text" inputmode="numeric" class="form-control" id="editStudentId" name="student_id" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editClassId" class="form-label">ID Kelas : </label>
+                                            <input type="text" class="form-control" id="editClassId" name="class_id" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeStudentModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
