@@ -14,7 +14,7 @@ include('./db/db.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>ADMIN SMA - Data Kelas</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -402,60 +402,40 @@ include('./db/db.php');
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <button class='btn btn-primary btn-md mb-3 addClassBtn'>Add New Class</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>No</th> <!-- Kolom Nomor -->
+                                            <th>Kelas ID</th>
+                                            <th>Nama Kelas</th>
+                                            <th>Tingkat Kelas</th>
+                                            <th>Program</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <?php
-                                        $result = $conn->query("SELECT id, role, name, email, phone, gender, address, dob FROM users WHERE deleted_at IS NULL");
+                                        $result = $conn->query("SELECT id, name, grade, program FROM classes WHERE deleted_at IS NULL");
                                         $no = 1; // Inisialisasi nomor urut
                                         while ($row = $result->fetch_assoc()) {
-
-                                            $convertedGender = $row['gender'] == 'Male' ? 'Laki-laki' : 'Perempuan'; // Convert gender to readable format
-                                            $convertedDob = date('d-m-Y', strtotime($row['dob'])); // Convert date of birth to readable format
+                                            $convertedProgram = $row['program'] == 'Science' ? 'MIPA' : ($row['program'] == 'Social' ? 'Sosial' : 'Bahasa');
 
                                             echo "<tr>
                                                         <td>{$no}</td> <!--Menampilkan nomor urut-->
                                                         <td>{$row['id']}</td>
-                                                        <td>{$row['role']}</td>
                                                         <td>{$row['name']}</td>
-                                                        <td>{$row['email']}</td>
-                                                        <td>{$row['phone']}</td>
-                                                        <td>{$convertedGender}</td>
-                                                        <td>{$row['address']}</td>
-                                                        <td>{$convertedDob}</td>
+                                                        <td>{$row['grade']}</td>
+                                                        <td>{$convertedProgram}</td>
                                                         <td>
-                                                            <!--<a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>-->
-                                                            <button class='btn btn-warning btn-sm editUserBtn' 
-                                                                data-id='{$row['id']}' 
-                                                                data-role='{$row['role']}' 
+                                                            <button class='btn btn-warning btn-sm editClassBtn' 
+                                                                data-id='{$row['id']}'  
                                                                 data-name='{$row['name']}' 
-                                                                data-email='{$row['email']}' 
-                                                                data-phone='{$row['phone']}'
-                                                                data-gender='{$row['gender']}' 
-                                                                data-address='{$row['address']}'
-                                                                data-dob='{$row['dob']}' 
+                                                                data-grade='{$row['grade']}' 
+                                                                data-program='{$row['program']}'
                                                                 >Edit</button>
 
-                                                            <a href='./services/delete/user.delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
+                                                            <a href='./services/delete/class.delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                                         </td>
                                                     </tr>";
                                             $no++; // Increment nomor urut
@@ -463,6 +443,89 @@ include('./db/db.php');
                                         ?>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADD MODALS -->
+                    <!-- Modal for Add Class -->
+                    <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="addForm" method="POST" action="./services/create/class.create.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addModalLabel">Add Class</h5>
+                                        <button type="button" class="btn-close closeClassModalBtn" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="addId">
+                                        <div class="mb-3">
+                                            <label for="addName" class="form-label">Class Name : </label>
+                                            <input type="text" class="form-control" id="addName" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addGrade" class="form-label">Grade : </label>
+                                            <select name="grade" class="form-control" id="addGrade">
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="addProgram" class="form-label">Program : </label>
+                                            <select name="program" class="form-control" id="addProgram">
+                                                <option value="Science">MIPA</option>
+                                                <option value="Social">Sosial</option>
+                                                <option value="Language">Bahasa</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary closeClassModalBtn">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EDIT MODALS -->
+                    <!-- Modal for Edit Class -->
+                    <div class="modal fade" id="editClassModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="editForm" method="POST" action="./services/update/class.update.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit Class</h5>
+                                        <button type="button" class="btn-close closeClassModalBtn" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id" id="classId">
+                                        <div class="mb-3">
+                                            <label for="editName" class="form-label">Class Name : </label>
+                                            <input type="text" class="form-control" id="editName" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editGrade" class="form-label">Grade : </label>
+                                            <select name="grade" class="form-control" id="editGrade">
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProgram" class="form-label">Program : </label>
+                                            <select name="program" class="form-control" id="editProgram">
+                                                <option value="Science">MIPA</option>
+                                                <option value="Social">Sosial</option>
+                                                <option value="Language">Bahasa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeClassModalBtn">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -531,6 +594,49 @@ include('./db/db.php');
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#userTable').DataTable();
+
+            $('.editClassBtn').on('click', function() {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const grade = $(this).data('grade');
+                const program = $(this).data('program');
+
+                console.log("Edit button clicked");
+                console.log(id);
+                console.log(name);
+                console.log(grade);
+                console.log(program);
+
+                // Populate the modal fields with existing user data
+                $('#classId').val(id);
+                $('#editName').val(name);
+                $('#editGrade').val(grade);
+                $('#editProgram').val(program);
+
+                // Show edit modal
+                $('#editClassModal').modal('show');
+                console.log("edit modal shown");
+            });
+
+            // Close edit modal
+            $('.closeClassModalBtn').on('click', function() {
+                $('#editClassModal').modal('hide');
+            });
+
+            // Open modal for adding new user
+            $('.addClassBtn').on('click', function() {
+                $('#addClassModal').modal('show');
+            });
+
+            // Close add modal
+            $('.closeClassModalBtn').on('click', function() {
+                $('#addClassModal').modal('hide');
+            });
+        });
+    </script>
 </body>
 
 </html>
