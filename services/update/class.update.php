@@ -5,7 +5,7 @@ $name = $_POST['name'];
 $grade = $_POST['grade'];
 $program = $_POST['program'];
 
-$sql = "UPDATE students SET
+$sql = "UPDATE classes SET
         name='$name',
         grade='$grade',
         program='$program',

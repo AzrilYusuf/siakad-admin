@@ -933,7 +933,6 @@ include('./db/db.php');
                 const teacherId = $(this).data('teacher-id');
                 const specialization = $(this).data('specialization');
 
-                console.log("id: " + id);
                 // Populate the modal fields with existing user data
                 $('#teacherId').val(id);
                 $('#editTeacherId').val(teacherId);

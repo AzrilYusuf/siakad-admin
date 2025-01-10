@@ -23,10 +23,10 @@ include('./db/db.php');
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="./vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -455,7 +455,7 @@ include('./db/db.php');
                                 <form id="addForm" method="POST" action="./services/create/class.create.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addModalLabel">Add Class</h5>
-                                        <button type="button" class="btn-close closeClassModalBtn" aria-label="Close">×</button>
+                                        <button type="button" class="btn-close closeAddClassBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="addId">
@@ -480,9 +480,10 @@ include('./db/db.php');
                                             </select>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary closeClassModalBtn">Close</button>
+                                            <button type="button" class="btn btn-secondary closeAddClassBtn">Close</button>
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -496,7 +497,7 @@ include('./db/db.php');
                                 <form id="editForm" method="POST" action="./services/update/class.update.php">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editModalLabel">Edit Class</h5>
-                                        <button type="button" class="btn-close closeClassModalBtn" aria-label="Close">×</button>
+                                        <button type="button" class="btn-close closeEditClassBtn" aria-label="Close">×</button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id" id="classId">
@@ -522,7 +523,7 @@ include('./db/db.php');
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary closeClassModalBtn">Close</button>
+                                        <button type="button" class="btn btn-secondary closeEditClassBtn">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
@@ -578,21 +579,21 @@ include('./db/db.php');
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="./vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="./vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    
+    <!-- Custom scripts for all pages-->
+    <script src="./js/sb-admin-2.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="./js/demo/datatables-demo.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -622,7 +623,7 @@ include('./db/db.php');
             });
 
             // Close edit modal
-            $('.closeClassModalBtn').on('click', function() {
+            $('.closeEditClassBtn').on('click', function() {
                 $('#editClassModal').modal('hide');
             });
 
@@ -632,7 +633,7 @@ include('./db/db.php');
             });
 
             // Close add modal
-            $('.closeClassModalBtn').on('click', function() {
+            $('.closeAddClassBtn').on('click', function() {
                 $('#addClassModal').modal('hide');
             });
         });
