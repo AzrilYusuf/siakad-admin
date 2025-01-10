@@ -540,6 +540,7 @@ include('./db/db.php');
                                             <th>NISN / ID Siswa</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
+                                            <th>Tingkat</th>
                                             <th>e-Mail</th>
                                             <th>Telp</th>
                                             <th>Alamat</th>
@@ -548,7 +549,7 @@ include('./db/db.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $result = $conn->query("SELECT students.id, students.student_id, students.class_id, classes.name as class_name, users.name, users.email, users.address, users.phone
+                                        $result = $conn->query("SELECT students.id, students.student_id, students.class_id, classes.name as class_name, classes.grade, users.name, users.email, users.address, users.phone
                                                                 FROM students
                                                                 inner join classes
                                                                 on students.class_id = classes.id
@@ -564,6 +565,7 @@ include('./db/db.php');
                                                         <td>{$row['student_id']}</td>
                                                         <td>{$row['name']}</td>
                                                         <td>{$row['class_name']}</td>
+                                                        <td>{$row['grade']}</td>
                                                         <td>{$row['email']}</td>
                                                         <td>{$row['phone']}</td>
                                                         <td>{$row['address']}</td>
